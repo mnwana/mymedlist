@@ -12,13 +12,13 @@ User.init(
       autoIncrement: true,
     },
     firstname: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
     lastname: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
@@ -35,4 +35,5 @@ User.init(
     modelName: "user",
   }
 );
+
 module.exports = User;
