@@ -14,17 +14,16 @@ User.init(
     firstname: {
       type: DataTypes.STRING,
       allowNull: false,
-      primaryKey: true,
       autoIncrement: true,
     },
     lastname: {
       type: DataTypes.STRING,
       allowNull: false,
-      primaryKey: true,
       autoIncrement: true,
     },
     dateofbirth: {
-      type: Sequelize.DATEONLY,
+      type: DataTypes.DATEONLY,
+      allowNull: false,
     },
   },
   {
