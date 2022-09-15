@@ -1,6 +1,25 @@
 {
+  "name": "mymedlist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mnwana/mymedlist.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mnwana/mymedlist/issues"
+  },
+  "homepage": "https://github.com/mnwana/mymedlist#readme",
   "dependencies": {
     "express": "^4.18.1",
+    "mysql2": "^2.3.3",
     "sequelize": "^6.21.6"
   }
 }
