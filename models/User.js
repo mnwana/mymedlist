@@ -23,6 +23,18 @@ User.init(
       type: DataTypes.DATEONLY,
       allowNull: false,
     },
+    usertype: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    institution: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    recentlistid: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   {
     sequelize,
