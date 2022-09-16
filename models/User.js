@@ -14,12 +14,10 @@ User.init(
     firstname: {
       type: DataTypes.STRING,
       allowNull: false,
-      autoIncrement: true,
     },
     lastname: {
       type: DataTypes.STRING,
       allowNull: false,
-      autoIncrement: true,
     },
     dateofbirth: {
       type: DataTypes.DATEONLY,
