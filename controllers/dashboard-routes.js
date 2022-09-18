@@ -6,7 +6,7 @@ const { route } = require("./api");
 const withAuth = require("../utils/auth");
 
 // get recent posts for patient dashboard
-route.get("/patient/:id", withAuth, (req, res) => {
+router.get("/patient/:id", withAuth, (req, res) => {
   console.log(req.session);
   console.log("==================");
   List.findOne({
@@ -34,7 +34,7 @@ route.get("/patient/:id", withAuth, (req, res) => {
 });
 
 // get all users for patient dashboard
-route.get("/provider/:id", withAuth, (req, res) => {
+router.get("/provider/:id", withAuth, (req, res) => {
   console.log(req.session);
   console.log("==================");
   User.findAll({
@@ -61,3 +61,5 @@ route.get("/provider/:id", withAuth, (req, res) => {
     res.render("provider-dashboard", { dbUserData, loggedIn: true });
   });
 });
+
+module.exports = router;
