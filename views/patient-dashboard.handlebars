@@ -1,0 +1,21 @@
+<main>
+  <div>
+    <h2>Patient Dashboard</h2>
+    <div>
+    <h4>{{user.first_name}} {{user.last_name}} | {{user.date_of_birth}}</h4>
+    </div>
+    <div>
+        <div>
+        {{#if list.isRecentList}}
+            {{list.createdAt}}
+        {{/if}}
+        </div>
+        <h3> Medication List </h3>
+        <button>Previous Lists</button>
+        <button>Save List</button>
+        <div>
+            {{list.description}}
+             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis nesciunt veniam explicabo expedita voluptatem. Sapiente nam nemo maxime assumenda laudantium perspiciatis, dicta tempore eveniet error rem, fugit obcaecati provident excepturi.</div>
+    </div>
+  </div>
+</main>
