@@ -1,0 +1,18 @@
+<main>
+  <h2>Previous List</h2>
+  <div
+    id="myGrid"
+    style="height: 200px; width:500px;"
+    class="ag-theme-alpine"
+  ></div>
+</main>
+<script>
+  const columnDefs = [ 
+  { field: "id" }, 
+  { field: "user_id" }, 
+  { field: "list_text" }, 
+  { field: "created_at" }, ]; 
+  const gridOptions = {columnDefs: columnDefs, rowData:{{{lists.lists}}}, };
+  const gridDiv = document.querySelector("#myGrid"); 
+  new agGrid.Grid(gridDiv, gridOptions);
+</script>

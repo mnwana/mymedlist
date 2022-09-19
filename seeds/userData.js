@@ -1,5 +1,5 @@
-const User  = require('../models/User');
-// const {User, List} = require('')
+// const User  = require('../models/User');
+const {User, List} = require('')
 
 const userData = [
   {
