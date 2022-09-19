@@ -2,7 +2,7 @@ const router = require("express").Router();
 const sequelize = require("../../config/connection");
 // const { User, List } = require("../../models/");
 const List = require("../../models/List");
-const User = require("../../models/User");
+const User = require("../../models/User-details");
 const withAuth = require("../../utils/auth");
 
 // get all lists
