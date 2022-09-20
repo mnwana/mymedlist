@@ -1,12 +1,11 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const User = require("../models/User");
-const List = require("../models/List");
+const {User, List} = require('../models')
 const { route } = require("./api");
 const withAuth = require("../utils/auth");
 
-// get recent posts for patient dashboard
-router.get("/patient/:id", withAuth, (req, res) => {
+// get recent list for patient dashboard
+router.get("/patient", withAuth, (req, res) => {
   console.log(req.session);
   console.log("==================");
   List.findOne({
@@ -29,12 +28,43 @@ router.get("/patient/:id", withAuth, (req, res) => {
       },
     ],
   }).then((dbListData) => {
-    res.render("patient-dashboard", { dbListData, loggedIn: true });
+    const list = dbListData.get({ plain: true });
+    res.render("patient-dashboard", { list, loggedIn: true });
   });
 });
 
+router.get("/patient-history", (req, res) => {
+  List.findAll({
+    where: {
+      user_id: req.session.user_id,
+      // user_id: 1,
+    },
+    attributes: ["id", "list_text", "created_at", "user_id"],
+    include: [
+      {
+        model: User,
+        attributes: [
+          "recent_list_id",
+          "first_name",
+          "last_name",
+          "date_of_birth",
+        ],
+      },
+    ],
+    order: [["list.created_at", "DESC"]],
+  })
+    .then((dbListData) => {
+      var lists = {lists: JSON.stringify(dbListData)};
+      res.render("patient-history", {lists, loggedIn: true});
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 // get all users for patient dashboard
-router.get("/provider/:id", withAuth, (req, res) => {
+router.get("/provider", withAuth, (req, res) => {
   console.log(req.session);
   console.log("==================");
   User.findAll({
@@ -58,7 +88,8 @@ router.get("/provider/:id", withAuth, (req, res) => {
       },
     ],
   }).then((dbUserData) => {
-    res.render("provider-dashboard", { dbUserData, loggedIn: true });
+    const users = dbUserData.map((user) => user.get({ plain: true }));
+    res.render("provider-dashboard", { users, loggedIn: true });
   });
 });
 
