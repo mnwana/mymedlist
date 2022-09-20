@@ -1,30 +1,33 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const {User, List} = require('../models')
+const { User, List } = require("../models");
 const { route } = require("./api");
 const withAuth = require("../utils/auth");
 
 // get recent list for patient dashboard
 router.get("/patient", withAuth, (req, res) => {
-  console.log(req.session);
-  console.log("==================");
-  List.findOne({
+  console.log("======================");
+  PatientDetails.findAll({
     where: {
       user_id: req.session.user_id,
-      id: { $col: "user.recent_list_id" },
+      recentlistid: { $col: "list.id" }, //ask
     },
+    attributes: [
+      "id",
+      "firstname",
+      "lastname",
+      "dateofbirth",
+      "usertype",
+      "recentlistid",
+    ],
     include: [
       {
+        model: List,
+        attributes: ["id", "list_text", "user_id"],
+      },
+      {
         model: User,
-        attributes: [
-          "id",
-          "recent_list_id",
-          "first_name",
-          "last_name",
-          "date_of_birth",
-          "created_at",
-          "last_updated",
-        ],
+        attributes: ["username"],
       },
     ],
   }).then((dbListData) => {
@@ -32,35 +35,34 @@ router.get("/patient", withAuth, (req, res) => {
     res.render("patient-dashboard", { list, loggedIn: true });
   });
 });
-
-router.get("/patient-history", (req, res) => {
-  List.findAll({
+router.get("/patient-history", withAuth, (req, res) => {
+  console.log("======================");
+  PatientDetails.findAll({
     where: {
       user_id: req.session.user_id,
-      // user_id: 1,
     },
-    attributes: ["id", "list_text", "created_at", "user_id"],
+    attributes: [
+      "id",
+      "firstname",
+      "lastname",
+      "dateofbirth",
+      "usertype",
+      "recentlistid",
+    ],
     include: [
       {
+        model: List,
+        attributes: ["id", "list_text", "user_id"],
+      },
+      {
         model: User,
-        attributes: [
-          "recent_list_id",
-          "first_name",
-          "last_name",
-          "date_of_birth",
-        ],
+        attributes: ["username"],
       },
     ],
-    order: [["list.created_at", "DESC"]],
-  })
-    .then((dbListData) => {
-      var lists = {lists: JSON.stringify(dbListData)};
-      res.render("patient-history", {lists, loggedIn: true});
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+  }).then((dbListData) => {
+    var lists = { lists: JSON.stringify(dbListData) };
+    res.render("patient-history", { lists, loggedIn: true });
+  });
 });
 
 // get all users for patient dashboard

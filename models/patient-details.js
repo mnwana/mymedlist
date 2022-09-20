@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 //create the user model with fields and columns
-class User extends Model {}
+class PatientDetails extends Model {}
 
-User.init(
+PatientDetails.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -23,14 +23,22 @@ User.init(
       type: DataTypes.DATEONLY,
       allowNull: false,
     },
+    usertype: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    recentlistid: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   {
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: "user",
+    modelName: "patient-details",
   }
 );
 
-module.exports = User;
+module.exports = PatientDetails;
