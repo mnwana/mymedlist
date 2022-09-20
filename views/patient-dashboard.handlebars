@@ -2,21 +2,34 @@
   <div>
     <h2>Patient Dashboard</h2>
     <div>
-    <h4>{{user.first_name}} {{user.last_name}} | {{user.date_of_birth}}</h4>
+      <h4>{{user.first_name}} {{user.last_name}} | {{user.date_of_birth}}</h4>
     </div>
     <div>
-        <div>
-          {{!-- if the list is not the most recent list, show the created timestamp --}}
-        {{#if (eq list.id '!=' list.recent_list_id)}}
-            {{list.createdAt}}
+      <div>
+        {{! if the list is not the most recent list, show the created timestamp }}
+        {{#if (eq list.id "!=" list.recent_list_id)}}
+          {{list.createdAt}}
         {{/if}}
-        </div>
-        <h3> Medication List </h3>
-        <button>Previous Lists</button>
-        <button>Save List</button>
+      </div>
+      <h3> Medication List </h3>
+      <button>Previous Lists</button>
+      <button>Save List</button>
+      <body>
+
         <div>
-            {{{list.list_text}}}
-             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis nesciunt veniam explicabo expedita voluptatem. Sapiente nam nemo maxime assumenda laudantium perspiciatis, dicta tempore eveniet error rem, fugit obcaecati provident excepturi.</div>
+          <input
+            class="med-list"
+            placeholder="Enter Med List Name"
+            maxlength="28"
+            type="text"
+          />
+          <textarea
+            class="note-textarea"
+            placeholder="Enter medications here"
+          ></textarea>
+
+        </div>
+      </body>
     </div>
   </div>
 </main>
