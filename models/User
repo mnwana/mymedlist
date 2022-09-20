@@ -47,7 +47,7 @@ User.init(
         return updatedUserData;
       },
     },
-    sequalize,
+    sequelize,
     timestamps: false,
     freezTableNAme: true,
     underscored: true,
@@ -55,4 +55,4 @@ User.init(
   }
 );
 
-model.exports = User;
+module.exports = User;

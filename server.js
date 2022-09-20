@@ -10,8 +10,8 @@ const sequelize = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const sess = {
-  // public key on how to authenticate -- randomly created in production
-  sescret: "Super secret secret",
+  // sescret: "Super secret secret", //ask
+  secret: process.env.SESSION_SECRET || "Super secret secret",
   cookie: {},
   resave: false,
   saveUninitialized: true,
@@ -20,10 +20,12 @@ const sess = {
   }),
 };
 
-// app.user(session(sess));
+app.use(session(sess));
 
-// app.engine('handlebars',hbs.engine);
-// app.set('view engine', 'handlebars');
+const hbs = exphbs.create();
+
+app.engine("handlebars", hbs.engine);
+app.set("view engine", "handlebars");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
