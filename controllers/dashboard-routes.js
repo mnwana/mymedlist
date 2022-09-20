@@ -65,34 +65,4 @@ router.get("/patient-history", withAuth, (req, res) => {
   });
 });
 
-// get all users for patient dashboard
-router.get("/provider", withAuth, (req, res) => {
-  console.log(req.session);
-  console.log("==================");
-  User.findAll({
-    // TODO: ensure can only pull when this user is a provider
-    // where:{
-    //     user_id: req.session.user_id,
-    //     user_type: 'provider',
-    // },
-    include: [
-      {
-        model: User,
-        attributes: [
-          "id",
-          "recent_list_id",
-          "first_name",
-          "last_name",
-          "date_of_birth",
-          "created_at",
-          "last_updated",
-        ],
-      },
-    ],
-  }).then((dbUserData) => {
-    const users = dbUserData.map((user) => user.get({ plain: true }));
-    res.render("provider-dashboard", { users, loggedIn: true });
-  });
-});
-
 module.exports = router;
