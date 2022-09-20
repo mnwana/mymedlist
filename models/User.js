@@ -35,6 +35,26 @@ User.init(
         len: [6],
       },
     },
+    firstname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    lastname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    dateofbirth: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+    usertype: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    recentlistid: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   {
     hooks: {

@@ -7,7 +7,7 @@ const withAuth = require("../utils/auth");
 // get recent list for patient dashboard
 router.get("/patient", withAuth, (req, res) => {
   console.log("======================");
-  PatientDetails.findAll({
+  User.findAll({
     where: {
       user_id: req.session.user_id,
       recentlistid: { $col: "list.id" }, //ask
@@ -19,15 +19,12 @@ router.get("/patient", withAuth, (req, res) => {
       "dateofbirth",
       "usertype",
       "recentlistid",
+      "username"
     ],
     include: [
       {
         model: List,
         attributes: ["id", "list_text", "user_id"],
-      },
-      {
-        model: User,
-        attributes: ["username"],
       },
     ],
   }).then((dbListData) => {
@@ -37,7 +34,7 @@ router.get("/patient", withAuth, (req, res) => {
 });
 router.get("/patient-history", withAuth, (req, res) => {
   console.log("======================");
-  PatientDetails.findAll({
+  User.findAll({
     where: {
       user_id: req.session.user_id,
     },
@@ -48,15 +45,12 @@ router.get("/patient-history", withAuth, (req, res) => {
       "dateofbirth",
       "usertype",
       "recentlistid",
+      "username"
     ],
     include: [
       {
         model: List,
         attributes: ["id", "list_text", "user_id"],
-      },
-      {
-        model: User,
-        attributes: ["username"],
       },
     ],
   }).then((dbListData) => {
