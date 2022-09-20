@@ -1,12 +1,11 @@
-// const User  = require('../models/User');
-const {User, List} = require('')
+const  { User, List } = require('../models');
 
 const userData = [
   {
     // id: 1,
-    firstname: 'Sam',
-    lastname: 'Simpson',
-    dateofbirth: 'April 20, 1980',
+    username: 'Sam',
+    email: 'Simpson',
+    password: 'April 20, 1980',
     // user_type: 'Patient',
     // institution: 'CVS',
     // recentlistid: 1,
@@ -48,8 +47,8 @@ const userData = [
   // },
 ];
 
-// const seedUser = () => User.bulkCreate(userData,{individualHooks: true});
-const seedUser = () => User.bulkCreate(userData);
+const seedUser = () => User.bulkCreate(userData,{individualHooks: true});
+// const seedUser = () => User.bulkCreate(userData);
 
 
 module.exports = seedUser;

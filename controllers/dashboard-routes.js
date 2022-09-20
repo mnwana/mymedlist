@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const { User, List } = require("../models");
+const { User, List, PatientDetails, ProviderDetails }  = require("../models");
 const { route } = require("./api");
 const withAuth = require("../utils/auth");
 
@@ -24,6 +24,8 @@ router.get("/patient", withAuth, (req, res) => {
       {
         model: List,
         attributes: ["id", "list_text", "user_id"],
+        through: User, 
+        as: "user_table"
       },
       {
         model: User,
@@ -53,6 +55,8 @@ router.get("/patient-history", withAuth, (req, res) => {
       {
         model: List,
         attributes: ["id", "list_text", "user_id"],
+        through: User, 
+        as: "user_table"
       },
       {
         model: User,

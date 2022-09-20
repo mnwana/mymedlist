@@ -14,7 +14,7 @@ User.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoincrement: true,
+      autoIncrement: true
     },
     username: {
       type: DataTypes.STRING,
@@ -48,7 +48,7 @@ User.init(
       },
     },
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezTableNAme: true,
     underscored: true,
     modelName: "user",
