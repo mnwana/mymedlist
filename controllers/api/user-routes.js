@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const res = require("express/lib/response");
-const { User, List } = require("../../models");
+const { User, List, PatientDetails, ProviderDetails } = require("../../models");
 
 //get users
 router.get("/", (req, res) => {
@@ -39,40 +39,43 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post('/login', (req, res) => {
+router.post('/', (req, res) => {
+  User.create({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password
+  })
+    .then(dbUserData => {
+      req.session.save(() => {
+        req.session.user_id = dbUserData.id;
+        req.session.username = dbUserData.username;
+        req.session.loggedIn = true;
+        res.json(dbUserData);
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.post("/login", (req, res) => {
   User.findOne({
     where: {
-      email: req.body.email
-    }
-  }).then(dbUserData => {
+      email: req.body.email,
+    },
+  }).then((dbUserData) => {
     if (!dbUserData) {
-      res.status(400).json({ message: 'No user with that email address!' });
+      res.status(400).json({ message: "No user with that email address!" });
       return;
     }
-
     const validPassword = dbUserData.checkPassword(req.body.password);
-
     if (!validPassword) {
-      res.status(400).json({ message: 'Incorrect password!' });
+      res.status(400).json({ message: "Incorrect password" });
       return;
     }
-    req.session.save(() => {
-      req.session.user_id = dbUserData.id;
-      req.session.username = dbUserData.username;
-      req.session.loggedIn = true;
-  
-      res.json({ user: dbUserData, message: 'You are now logged in!' });
-    });
+    res.json({ user: dbUserData, message: "You are now logged in!" });
   });
-});
-router.post("/logout", (req, res) => {
-  if (req.session.loggedIn) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
 });
 
 router.put("/:id", (req, res) => {
@@ -95,14 +98,14 @@ router.put("/:id", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post('/', (req, res) => {
   User.create({
     username: req.body.username,
     email: req.body.email,
-    password: req.body.password,
-    //     add in userType field then update User model to include UserType
+    password: req.body.password
+//     add in userType field then update User model to include UserType
   })
-    .then((dbUserData) => {
+    .then(dbUserData => {
       req.session.save(() => {
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
@@ -110,7 +113,7 @@ router.post("/", (req, res) => {
         res.json(dbUserData);
       });
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
       res.status(500).json(err);
     });
