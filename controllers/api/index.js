@@ -3,7 +3,7 @@ const router = require("express").Router();
 const userRoutes = require("./user-routes");
 const listRoutes = require("./list-routes");
 
-router.use("/user", userRoutes);
-router.use("/list", listRoutes);
+router.use("/users", userRoutes);
+router.use("/lists", listRoutes);
 
 module.exports = router;

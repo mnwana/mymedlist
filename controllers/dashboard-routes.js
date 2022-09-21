@@ -7,18 +7,14 @@ const withAuth = require("../utils/auth");
 // get recent list for patient dashboard
 router.get("/patient", withAuth, (req, res) => {
   console.log("======================");
-  User.findAll({
+  // User.findAll({
+    User.findOne({
     where: {
-      user_id: req.session.user_id,
-      recentlistid: { $col: "list.id" }, //ask
+      id: req.session.user_id,
     },
     attributes: [
       "id",
-      "firstname",
-      "lastname",
-      "dateofbirth",
-      "usertype",
-      "recentlistid",
+      "email",
       "username"
     ],
     include: [
@@ -27,24 +23,29 @@ router.get("/patient", withAuth, (req, res) => {
         attributes: ["id", "list_text", "user_id"],
       },
     ],
+    order: [[List, "createdAt", "desc"]],
   }).then((dbListData) => {
-    const list = dbListData.get({ plain: true });
-    res.render("patient-dashboard", { list, loggedIn: true });
+    var data;
+    if(dbListData){
+      data = dbListData.get({ plain: true });
+    }
+    else {
+      data = [];
+    };
+    console.log(data);
+    // const data = dbListData.get({ plain: true });
+    res.render("patient-dashboard", { data, loggedIn: true });
   });
 });
 router.get("/patient-history", withAuth, (req, res) => {
   console.log("======================");
   User.findAll({
     where: {
-      user_id: req.session.user_id,
+      id: req.session.user_id,
     },
     attributes: [
       "id",
-      "firstname",
-      "lastname",
-      "dateofbirth",
-      "usertype",
-      "recentlistid",
+      "email",
       "username"
     ],
     include: [

@@ -9,7 +9,7 @@ User.hasMany(List, {
 List.belongsTo(User, {
   foreignKey: "user_id",
   onDelete: "SET NULL",
+  as: 'users'
 });
-
 
 module.exports = { User, List };
