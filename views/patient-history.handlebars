@@ -1,27 +1,32 @@
-<main>
-  <h2>Previous List</h2>
-  <div
-    id="myGrid"
-    style="height: 200px; width:500px;"
-    class="ag-theme-alpine"
-  ></div>
-</main>
+<body class="text-center m-auto">
+  <div class="d-flex justify-content-center flex-wrap">
+    <h2 class="col-sm-12">Previous List</h2>
+    <div
+      id="myGrid"
+      class="ag-theme-alpine col-sm-12"
+    ></div>
+  </div>
+</body>
+
 <script>
 
-const openList = function(params){
-  console.log(params);
-   const list_id = params.value;
-   console.log(list_id);
+  {{!-- const openList = function(params){
+    console.log(params); 
+    const list_id = params.value; console.log(list_id);
     document.location.replace(`/dashboard/lists/${list_id}`);
-};
+    };  --}}
 
-  const columnDefs = [
-   { field: "id", onCellClicked: openList}, 
-   { field: "user_id" }, 
-   { field: "list_text" }, 
-   {field: "list_title"}, 
-   { field: "created_at" } ]; 
-  const gridOptions = {columnDefs: columnDefs, rowData:{{{data}}}, }; 
-  const gridDiv = document.querySelector("#myGrid"); new agGrid.Grid(gridDiv,
-  gridOptions);
+    const openList = function(params){
+    document.location.replace(`/dashboard/lists/${params.data.id}`);
+    }; 
+  const columnDefs= [ 
+  { field: "id"}, 
+  {field: "list_title"}, 
+  { field: "created_at"} ]; 
+  const gridOptions = {
+    columnDefs: columnDefs, 
+    rowData:{{{data}}}, 
+    onRowClicked: event => openList(event)
+  }; 
+  const gridDiv = document.querySelector("#myGrid"); new agGrid.Grid(gridDiv, gridOptions);
 </script>
