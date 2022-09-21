@@ -2,56 +2,34 @@ const  {List, User}  = require('../models');
 
 const userData = [
   {
-    // id: 1,
-    username: 'mnwana'    ,
-    email: 'mnwana@gmail.com' , 
-    password: 'password1234'
-    // firstname: 'Sam',
-    // lastname: 'Simpson',
-    // dateofbirth: 'April 20, 1980',
-    // user_type: 'Patient',
-    // institution: 'CVS',
-    // recentlistid: 1,
-    // createdat: 'June 22, 2021 09:00:00',
-    // lastupdated: 'January 18, 2022 09:00:00'
+    username: 'user_1'    ,
+    email: 'user_1@gmail.com' , 
+    password: 'password1234',
   },
-  // {
-  //   id: 2,
-  //   firstname: 'Jake',
-  //   lastname: 'Hammer',
-  //   dateofbirth: 'May 11, 1989',
-  //   user_type: 'Patient',
-  //   institution: 'Duane Reade',
-  //   recentlistid: 2,
-  //   createdat: 'June 22, 2012 09:00:00',
-  //   lastupdated: 'January 18, 2022 09:00:00'
-  // },
-  // {
-  //   id: 3,
-  //   firstname: 'Michelle',
-  //   lastname: 'Lou',
-  //   dateofbirth: 'September 19, 2004',
-  //   user_type: 'Patient',
-  //   institution: 'CVS',
-  //   recentlistid: 3,
-  //   createdat: 'July 15, 2018 09:00:00',
-  //   lastupdated: 'March 10, 2021 09:00:00'
-  // },
-  // {
-  //   id: 4,
-  //   firstname: 'Bob',
-  //   lastname: 'Crown',
-  //   dateofbirth: 'August 9, 1930',
-  //   user_type: 'Patient',
-  //   institution: 'CVS',
-  //   recentlistid: 4,
-  //   createdat: 'August 22, 2020 09:00:00',
-  //   lastupdated: 'January 2, 2022 09:00:00'
-  // },
+  {
+    username: 'user_2'    ,
+    email: 'user_2@gmail.com' , 
+    password: 'password1234',
+  },
+  {
+    username: 'user_3'    ,
+    email: 'user_3@gmail.com' , 
+    password: 'password1234',
+  },
+  {
+    username: 'user_4'    ,
+    email: 'user_4@gmail.com' , 
+    password: 'password1234',
+  },
+  {
+    username: 'user_5'    ,
+    email: 'uesr_5@gmail.com' , 
+    password: 'password1234',
+  },
 ];
 
-// const seedUser = () => User.bulkCreate(userData,{individualHooks: true});
-const seedUser = () => User.bulkCreate(userData);
+const seedUser = () => User.bulkCreate(userData,{individualHooks: true});
+// const seedUser = () => User.bulkCreate(userData);
 
 
 module.exports = seedUser;

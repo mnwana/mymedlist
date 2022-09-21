@@ -9,7 +9,7 @@ const withAuth = require("../../utils/auth");
 router.get("/", (req, res) => {
   console.log("======================");
   List.findAll({
-    attributes: ["id", "list_text", "user_id", "created_at"],
+    attributes: ["id", "list_text", "user_id", "created_at", "list_title"],
     include: [
       {
         model: User,
@@ -38,7 +38,7 @@ router.get("/", (req, res) => {
 // get list by list id
 router.get("/:list_id", (req, res) => {
   List.findByPk(req.body.list_id, {
-    attributes: ["id", "list_text", "user_id", "created_at"],
+    attributes: ["id", "list_text", "user_id", "created_at", "list_title"],
     include: [
       {
         model: User,
@@ -73,6 +73,7 @@ router.post("/", withAuth, (req, res) => {
   List.create({
     list_text: req.body.list_text,
     user_id: req.session.user_id,
+    list_title: req.body.list_title,
   })
     .then((dbPostData) => res.json(dbPostData))
     .catch((err) => {
@@ -108,7 +109,7 @@ router.get("/:user_id", (req, res) => {
       //   user_id:  req.session.user_id,
       user_id: req.params.user_id,
     },
-    attributes: ["id", "list_text", "created_at"],
+    attributes: ["id", "list_text", "created_at", "list_title"],
     include: [
       {
         model: User,
