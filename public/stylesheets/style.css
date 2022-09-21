@@ -1,0 +1,17 @@
+#myGrid {
+    width: 650px; 
+    height: 400px;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  color: #040404;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.background {
+  background-image: url("../assets/going\ over\ meds.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}

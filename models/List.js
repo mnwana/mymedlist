@@ -19,6 +19,13 @@ List.init(
       //   len: [1]
       // }
     },
+    list_title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      // validate: {
+      //   len: [1]
+      // }
+    },
     user_id: {
       type: DataTypes.INTEGER,
       references: {

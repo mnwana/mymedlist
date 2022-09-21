@@ -9,7 +9,7 @@ const withAuth = require("../../utils/auth");
 router.get("/", (req, res) => {
   console.log("======================");
   List.findAll({
-    attributes: ["id", "list_text", "user_id", "created_at"],
+    attributes: ["id", "list_text", "user_id", "created_at", "list_title"],
     include: [
       {
         model: User,
@@ -38,34 +38,29 @@ router.get("/", (req, res) => {
 // get list by list id
 router.get("/:list_id", (req, res) => {
   List.findByPk(req.body.list_id, {
-    attributes: ["id", "list_text", "user_id", "created_at"],
+    attributes: ["id", "list_text", "user_id", "created_at", "list_title"],
     include: [
       {
         model: User,
         attributes: [
-          // "recentlistid",
           "username"
-          // "firstname",
-          // "lastname",
-          // "date_of_birth",
         ],
       },
     ],
     order: [
       ["createdAt", "DESC"]
     ],
-  })
-    .then((dbPostData) => {
-      if (!dbPostData) {
-        res.status(404).json({ message: "No list found with this id" });
-        return;
-      }
-      res.json(dbPostData);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+  }).then((dbListData) => {
+    var data;
+    if(dbListData){
+      data = dbListData.get({ plain: true });
+    }
+    else {
+      data = [];
+    };
+    console.log(data);
+    res.render("patient-dashboard", { data, loggedIn: true });
+  });
 });
 
 // create list
@@ -73,6 +68,7 @@ router.post("/", withAuth, (req, res) => {
   List.create({
     list_text: req.body.list_text,
     user_id: req.session.user_id,
+    list_title: req.body.list_title,
   })
     .then((dbPostData) => res.json(dbPostData))
     .catch((err) => {
@@ -105,19 +101,15 @@ router.delete("/:id", (req, res) => {
 router.get("/:user_id", (req, res) => {
   List.findAll({
     where: {
-      //   user_id:  req.session.user_id,
-      user_id: req.params.user_id,
+      user_id: req.session.user_id,
     },
-    attributes: ["id", "list_text", "created_at"],
+    attributes: ["id", "list_text", "created_at", "list_title"],
     include: [
       {
         model: User,
         attributes: [
           "recentlistid",
           "username"
-          // "firstname",
-          // "lastname",
-          // "date_of_birth",
         ],
       },
     ],

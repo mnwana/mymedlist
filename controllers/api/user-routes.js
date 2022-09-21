@@ -39,19 +39,21 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/login", (req, res) => {
+router.post('/login', (req, res) => {
   User.findOne({
     where: {
-      email: req.body.email,
-    },
-  }).then((dbUserData) => {
+      email: req.body.email
+    }
+  }).then(dbUserData => {
     if (!dbUserData) {
-      res.status(400).json({ message: "No user with that email address!" });
+      res.status(400).json({ message: 'No user with that email address!' });
       return;
     }
+
     const validPassword = dbUserData.checkPassword(req.body.password);
+
     if (!validPassword) {
-      res.status(400).json({ message: "Incorrect password" });
+      res.status(400).json({ message: 'Incorrect password!' });
       return;
     }
     req.session.save(() => {
@@ -63,7 +65,6 @@ router.post("/login", (req, res) => {
     });
   });
 });
-
 router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
