@@ -58,20 +58,15 @@ router.post("/login", (req, res) => {
   });
 });
 
-// router.post("/signup", (req, res) => {
-//   User.findOne({
-//     where: {
-//       email: req.body.email,
-//     },
-//   }).then((dbUserData) => {
-//     if (!dbUserData) {
-//       // make user here
-
-//       return;
-//     }
-//     res.json({ user: dbUserData, message: "There is an existing user with this email!" });
-//   });
-// });
+router.post("/logout", (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
 
 router.put("/:id", (req, res) => {
   User.update(req.body, {
@@ -93,14 +88,14 @@ router.put("/:id", (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post("/", (req, res) => {
   User.create({
     username: req.body.username,
     email: req.body.email,
-    password: req.body.password
-//     add in userType field then update User model to include UserType
+    password: req.body.password,
+    //     add in userType field then update User model to include UserType
   })
-    .then(dbUserData => {
+    .then((dbUserData) => {
       req.session.save(() => {
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
@@ -108,7 +103,7 @@ router.post('/', (req, res) => {
         res.json(dbUserData);
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });

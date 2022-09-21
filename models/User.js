@@ -14,47 +14,47 @@ User.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoincrement: true,
+      autoIncrement: true
     },
     username: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {
-        isEmail: true,
-      },
+        isEmail: true
+      }
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [6],
-      },
+        len: [4]
+      }
     },
-    firstname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    lastname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    dateofbirth: {
-      type: DataTypes.DATEONLY,
-      allowNull: false,
-    },
-    usertype: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    recentlistid: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+    // firstname: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
+    // lastname: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
+    // dateofbirth: {
+    //   type: DataTypes.DATEONLY,
+    //   allowNull: false,
+    // },
+    // usertype: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
+    // recentlistid: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    // },
   },
   {
     hooks: {
@@ -71,7 +71,7 @@ User.init(
     timestamps: false,
     freezTableNAme: true,
     underscored: true,
-    modelName: "user",
+    modelName: "users",
   }
 );
 

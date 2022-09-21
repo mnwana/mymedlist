@@ -1,12 +1,14 @@
-// const User  = require('../models/User');
-const {User, List} = require('')
+const  {List, User}  = require('../models');
 
 const userData = [
   {
     // id: 1,
-    firstname: 'Sam',
-    lastname: 'Simpson',
-    dateofbirth: 'April 20, 1980',
+    username: 'mnwana'    ,
+    email: 'mnwana@gmail.com' , 
+    password: 'password1234'
+    // firstname: 'Sam',
+    // lastname: 'Simpson',
+    // dateofbirth: 'April 20, 1980',
     // user_type: 'Patient',
     // institution: 'CVS',
     // recentlistid: 1,

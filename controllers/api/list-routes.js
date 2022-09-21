@@ -14,16 +14,17 @@ router.get("/", (req, res) => {
       {
         model: User,
         attributes: [
-          "recent_list_id",
-          "first_name",
-          "last_name",
-          "date_of_birth",
+          "recentlistid",
+          "username"
+          // "firstname",
+          // "lastname",
+          // "date_of_birth",
         ],
       },
     ],
     order: [
-      ["first_name", "ASC"],
-      ["last_name", "ASC"],
+      ["firstname", "ASC"],
+      ["lastname", "ASC"],
       ["date_of_birth", "ASC"],
     ],
   })
@@ -42,45 +43,16 @@ router.get("/:list_id", (req, res) => {
       {
         model: User,
         attributes: [
-          "recent_list_id",
-          "first_name",
-          "last_name",
-          "date_of_birth",
+          // "recentlistid",
+          "username"
+          // "firstname",
+          // "lastname",
+          // "date_of_birth",
         ],
       },
     ],
     order: [
-      ["first_name", "ASC"],
-      ["last_name", "ASC"],
-      ["date_of_birth", "ASC"],
-    ],
-  })
-    .then((dbPostData) => {
-      if (!dbPostData) {
-        res.status(404).json({ message: "No list found with this id" });
-        return;
-      }
-      res.json(dbPostData);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-// get most recent list by user id
-router.get("/user_recent_list", (req, res) => {
-  List.findAll({
-    where: {
-      user_id: req.session.user_id,
-      id: { $col: "user.recent_list_id" },
-    },
-    attributes: ["id", "list_text", "created_at"],
-    include: [
-      {
-        model: User,
-        attributes: ["recent_list_id"],
-      },
+      ["createdAt", "DESC"]
     ],
   })
     .then((dbPostData) => {
@@ -98,7 +70,7 @@ router.get("/user_recent_list", (req, res) => {
 
 // create list
 router.post("/", withAuth, (req, res) => {
-  LIST.create({
+  List.create({
     list_text: req.body.list_text,
     user_id: req.session.user_id,
   })
@@ -111,7 +83,7 @@ router.post("/", withAuth, (req, res) => {
 
 // delete list
 router.delete("/:id", (req, res) => {
-  LIST.destroy({
+  List.destroy({
     where: {
       id: req.params.id,
     },
@@ -137,17 +109,18 @@ router.get("/:user_id", (req, res) => {
       user_id: req.params.user_id,
     },
     attributes: ["id", "list_text", "created_at"],
-    // include: [
-    //   {
-    //     model: User,
-    //     attributes: [
-    //       "recent_list_id",
-    //       "first_name",
-    //       "last_name",
-    //       "date_of_birth",
-    //     ],
-    //   },
-    // ],
+    include: [
+      {
+        model: User,
+        attributes: [
+          "recentlistid",
+          "username"
+          // "firstname",
+          // "lastname",
+          // "date_of_birth",
+        ],
+      },
+    ],
     order: [["list.created_at", "DESC"]],
   })
     .then((dbPostData) => {
