@@ -13,18 +13,27 @@
 </form>
 
 <form class="signup-form">
-  <div>
-    <label for="username-signup">username:</label>
-    <input type="text" placeholder='Your Name' id="username-signup" />
+  <div class="row mb-3">
+    <label for="username-signup" class="col-sm-2 col-form-label">username:</label>
+    <div class="col-sm-8">
+      <input type="text" placeholder='Your Name' id="username-signup" class="form-control"/>
+    </div>
   </div>
-  <div>
-    <label for="email-signup">email:</label>
-    <input type="text" placeholder='Email Address' id="email-signup" />
+
+  <div class="row mb-3">
+    <label for="email-signup" class="col-sm-2 col-form-label">email:</label>
+    <div class="col-sm-8">
+    <input type="text" placeholder='Email Address' id="email-signup" class="form-control"/>
+    </div>
   </div>
-  <div>
-    <label for="password-signup">password:</label>
-    <input type="password" placeholder='New Password' id="password-signup" />
+
+  <div class="row mb-3">
+    <label for="password-signup" class="col-sm-2 col-form-label">password:</label>
+    <div class="col-sm-8">
+    <input type="password" placeholder='New Password' id="password-signup" class="form-control"/>
+    </div>
   </div>
+
   <div>
     Are you a patient or a provider?
     <span class="radio-wrapper">
@@ -36,6 +45,7 @@
       <label for="provider">Provider</label>
     </span>
   </div>
+  
   <div>
     <button type="submit">signup</button>
   </div>
