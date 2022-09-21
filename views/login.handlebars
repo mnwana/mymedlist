@@ -1,41 +1,48 @@
-<form class="login-form">
-  <div>
-    <label for="email-login">email:</label>
-    <input type="text" id="email-login" />
+<body class="text-center m-auto">
+<form class="login-form border border-primary rounded p-3 bg-light">
+  <div class="row mb-3">
+    <label for="email-login" class="col-sm-2 col-form-label">email:</label>
+    <div class="col-sm-9">
+      <input type="text" placeholder="Your Email" id="email-login" class="form-control"/>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="password-login" class="col-sm-2 col-form-label">password:</label>
+    <div class="col-sm-9">
+      <input type="password" placeholder="Your Password" id="password-login" class="form-control"/>
+    </div>
   </div>
   <div>
-    <label for="password-login">password:</label>
-    <input type="password" id="password-login" />
-  </div>
-  <div>
-    <button type="submit">login</button>
+    <button type="submit" class="btn btn-primary">login</button>
   </div>
 </form>
 
-<form class="signup-form">
+<form class="signup-form border border-primary rounded p-3 bg-light">
   <div class="row mb-3">
     <label for="username-signup" class="col-sm-2 col-form-label">username:</label>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
       <input type="text" placeholder='Your Name' id="username-signup" class="form-control"/>
     </div>
   </div>
 
   <div class="row mb-3">
     <label for="email-signup" class="col-sm-2 col-form-label">email:</label>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
     <input type="text" placeholder='Email Address' id="email-signup" class="form-control"/>
     </div>
   </div>
 
   <div class="row mb-3">
     <label for="password-signup" class="col-sm-2 col-form-label">password:</label>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
     <input type="password" placeholder='New Password' id="password-signup" class="form-control"/>
     </div>
   </div>
 
-  <div>
-    Are you a patient or a provider?
+  <fieldset class="row mb-3">
+  {{!-- <legend class="col-form-label col-sm-2 pt-0">Are you a patient or a provider?</legend> --}}
+  <div class="col-sm-9 offset-2">
     <span class="radio-wrapper">
       <input type="radio" name="user-type" id="patient" />
       <label for="patient">Patient</label>
@@ -45,10 +52,12 @@
       <label for="provider">Provider</label>
     </span>
   </div>
-  
+  </fieldset>
+
   <div>
-    <button type="submit">signup</button>
+    <button type="submit" class="btn btn-primary">sign up</button>
   </div>
 </form>
+</body>
 
 <script src="/javascript/login.js"></script>
