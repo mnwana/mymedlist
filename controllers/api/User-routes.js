@@ -58,6 +58,21 @@ router.post("/login", (req, res) => {
   });
 });
 
+// router.post("/signup", (req, res) => {
+//   User.findOne({
+//     where: {
+//       email: req.body.email,
+//     },
+//   }).then((dbUserData) => {
+//     if (!dbUserData) {
+//       // make user here
+
+//       return;
+//     }
+//     res.json({ user: dbUserData, message: "There is an existing user with this email!" });
+//   });
+// });
+
 router.put("/:id", (req, res) => {
   User.update(req.body, {
     individualHooks: true,
