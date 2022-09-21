@@ -62,7 +62,7 @@ router.get("/lists/:id", withAuth, (req, res) => {
       data = [];
     };
     console.log(data);
-    res.render("patient-dashboard", { data, loggedIn: true });
+    res.render("previous-list", { data, loggedIn: true });
   });
 });
 
