@@ -43,7 +43,7 @@ router.get("/:list_id", (req, res) => {
       {
         model: User,
         attributes: [
-          "recentlistid",
+          // "recentlistid",
           "username"
           // "firstname",
           // "lastname",
@@ -52,9 +52,7 @@ router.get("/:list_id", (req, res) => {
       },
     ],
     order: [
-      ["firstname", "ASC"],
-      ["lastname", "ASC"],
-      ["date_of_birth", "ASC"],
+      ["createdAt", "DESC"]
     ],
   })
     .then((dbPostData) => {
