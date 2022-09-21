@@ -7,12 +7,21 @@
   ></div>
 </main>
 <script>
-  const columnDefs = [ 
-  { field: "id" }, 
-  { field: "user_id" }, 
-  { field: "list_text" }, 
-  { field: "created_at" }, ]; 
-  const gridOptions = {columnDefs: columnDefs, rowData:{{{lists.lists}}}, };
-  const gridDiv = document.querySelector("#myGrid"); 
-  new agGrid.Grid(gridDiv, gridOptions);
+
+const openList = function(params){
+  console.log(params);
+   const list_id = params.value;
+   console.log(list_id);
+    document.location.replace(`/dashboard/lists/${list_id}`);
+};
+
+  const columnDefs = [
+   { field: "id", onCellClicked: openList}, 
+   { field: "user_id" }, 
+   { field: "list_text" }, 
+   {field: "list_title"}, 
+   { field: "created_at" } ]; 
+  const gridOptions = {columnDefs: columnDefs, rowData:{{{data}}}, }; 
+  const gridDiv = document.querySelector("#myGrid"); new agGrid.Grid(gridDiv,
+  gridOptions);
 </script>
