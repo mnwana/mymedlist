@@ -6,7 +6,7 @@
     </div>
     <div>
       <div>
-          {{list.createdAt}}
+          {{data.lists.0.list_title}}
       </div>
       <h3> Medication List </h3>
       <button id = "prevLists">Previous Lists</button>
@@ -14,17 +14,24 @@
       <body>
 
         <div>
+          <h3>
+            {{data.lists.0.list_title}}
+          </h3>
+          <p>
+            {{data.lists.0.list_text}}
+          </p>
+           <div>
           <input
             class="med-list"
-            name = "list-title"
             placeholder="Enter Med List Name"
             maxlength="28"
             type="text"
+            name="list-title"
           />
           <textarea
             class="note-textarea"
-            name = "list-text"
             placeholder="Enter medications here"
+            name="list-text"
           ></textarea>
 
         </div>

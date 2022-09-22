@@ -7,15 +7,11 @@ const withAuth = require("../utils/auth");
 // get recent list for patient dashboard
 router.get("/patient", withAuth, (req, res) => {
   console.log("======================");
-    User.findOne({
+  User.findOne({
     where: {
       id: req.session.user_id,
     },
-    attributes: [
-      "id",
-      "email",
-      "username"
-    ],
+    attributes: ["id", "email", "username"],
     include: [
       {
         model: List,
@@ -25,42 +21,39 @@ router.get("/patient", withAuth, (req, res) => {
     order: [[List, "createdAt", "desc"]],
   }).then((dbListData) => {
     var data;
-    if(dbListData){
+    if (dbListData) {
       data = dbListData.get({ plain: true });
-    }
-    else {
+    } else {
       data = [];
-    };
+    }
     console.log(data);
+    console.log(data.lists[0].list_title);
     res.render("patient-dashboard", { data, loggedIn: true });
   });
 });
 
 router.get("/lists/:id", withAuth, (req, res) => {
   console.log("======================");
-    List.findOne({
+  List.findOne({
     where: {
       id: req.session.user_id,
-      id: req.params.id, 
+      id: req.params.id,
     },
     attributes: ["id", "list_text", "created_at", "list_title"],
     include: [
       {
         model: User,
-        as: 'users',
-        attributes: [
-          "username"
-        ],
+        as: "users",
+        attributes: ["username"],
       },
     ],
   }).then((dbListData) => {
     var data;
-    if(dbListData){
+    if (dbListData) {
       data = dbListData.get({ plain: true });
-    }
-    else {
+    } else {
       data = [];
-    };
+    }
     console.log(data);
     res.render("previous-list", { data, loggedIn: true });
   });
@@ -76,22 +69,19 @@ router.get("/patient-history", withAuth, (req, res) => {
     include: [
       {
         model: User,
-        as: 'users',
-        attributes: [
-          "username"
-        ],
+        as: "users",
+        attributes: ["username"],
       },
     ],
     order: [["createdAt", "DESC"]],
   }).then((dbListData) => {
     console.log(dbListData);
     var data;
-    if(dbListData){
+    if (dbListData) {
       data = JSON.stringify(dbListData);
-    }
-    else {
+    } else {
       data = [];
-    };
+    }
     console.log("======================");
     console.log(data);
     console.log("======================");
@@ -99,6 +89,5 @@ router.get("/patient-history", withAuth, (req, res) => {
     res.render("patient-history", { data, loggedIn: true });
   });
 });
-  
 
 module.exports = router;
