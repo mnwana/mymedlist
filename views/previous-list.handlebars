@@ -1,30 +1,27 @@
 <body class="text-center m-auto">
   <div>
-    <h2>Patient Dashboard</h2>
+    <h2>Previous List</h2>
     <div>
       <h4>{{data.users.username}}</h4>
     </div>
     <div>
       <div>
-          {{list.createdAt}}
+        {{list.createdAt}}
       </div>
       <h3> Medication List </h3>
-      <button id = "prevLists" class="btn btn-primary">Previous Lists</button>
+      <button id="prevLists" class="btn btn-primary">Previous Lists</button>
       <button class="btn btn-primary">Save List</button>
       <body>
 
-        <div>
-          <input
-            class="med-list"
-            placeholder="Enter Med List Name"
-            maxlength="28"
-            type="text"
-          />
-          
-          <textarea
-            class="note-textarea"
-            placeholder="Enter medications here"
-          ></textarea>
+        <div class="row justify-content-center col-6 offset-3">
+          <div>
+            <p class="fs-3 border med-list mt-3 mb-0">
+              {{data.list_title}}
+            </p>
+            <p class="fs-6 border note-textarea m-0">
+              {{data.list_text}}
+            </p>
+          </div>
 
         </div>
       </body>

@@ -6,7 +6,7 @@
     <script
       src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.js"
     ></script>
-    <title>My Med List</title>
+    <title>My Meds</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <!-- CSS only -->
     <link
@@ -26,8 +26,9 @@
     <div class="wrapper">
       <header class="container">
         <div class="row row-cols-auto">
-          <h1 class="col">
-            <a href="/">My Med List</a>
+          <h1 class="col p-0">
+            <img src="/assets/logosmall.png" />
+            <a class="text-decoration-none text-warning" href="/">My Meds</a>
           </h1>
         </div>
 
@@ -35,13 +36,16 @@
           <nav class="nav">
             {{#if loggedIn}}
               <a
-                class="nav-link active"
+                class="nav-link active border border-primary px-2"
                 aria-current="page"
                 href="/dashboard/patient"
-              >dashboard</a>
-              <button id="logout" class="btn-no-style">logout</button>
+              >Dashboard</a>
+              <button id="logout" class="btn-no-style px-4 mt-1">logout</button>
             {{else}}
-              <a class="nav-link" href="/login">login</a>
+              <a
+                class="nav-link fs-5 border border-primary"
+                href="/login"
+              >Login</a>
             {{/if}}
           </nav>
         </div>
@@ -50,7 +54,9 @@
       <main class="container">
         {{{body}}}
       </main>
-      <footer class="container fixed-bottom p-3">
+      <footer
+        class="container fixed-bottom p-0 background bg-warning bg-opacity-70 rounded"
+      >
         Disclaimer: This site is provided for educational purposes only and is
         not intended for medical advice, diagnosis or treatment. Please consult
         your doctor or pharmacist regarding your medications.

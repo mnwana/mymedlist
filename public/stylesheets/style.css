@@ -10,7 +10,7 @@ body {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-.background {
+.background1 {
   background-image: url("../assets/Home\ copy.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -24,17 +24,18 @@ body {
 
 .med-list {
   height: 50px;
-  margin-top: 13px;
-  font-size: 3rem;
 }
 .note-textarea {
   resize: none;
   height: calc(100% - 63px);
-  padding-top: 15px;
 }
 
 .med-list,
 .note-textarea {
-  color: #000000;
-  width: 100%;
+  width: 480px;
+}
+.img {
+  background-image: url("../assets/Screen\ Shot\ 2022-09-21\ at\ 10.35.09\ PM.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
