@@ -9,14 +9,19 @@
       <button class="btn btn-primary" id="saveList">Save List</button>
       <h3 class="mt-5"> Recent List </h3>
       <body>
-
         <div class="row mt-1 justify-content-center">
           <div class="col-6">
             <p class="fs-3 border med-list m-0">
-              {{data.lists.0.list_title}}
+            {{#if hasLists}}
+            {{data.lists.0.list_title}}
+            {{else}}
+            Create your first list!
+            {{/if}}
             </p>
             <p class="fs-6 border note-textarea m-0">
-              {{data.lists.0.list_text}}
+            {{#if hasLists}}
+            {{data.lists.0.list_text}}
+            {{/if}}
             </p>
           </div>
           <div class="col-6 container">
