@@ -1,10 +1,11 @@
 <main>
   <div>
-    <h2>Patient Dashboard</h2>
+    <h2>Previous List</h2>
     <div>
       <h4>{{data.users.username}}</h4>
     </div>
     <div>
+<<<<<<< HEAD
       <h3> Medication List </h3>
       <button id = "prevLists">Previous Lists</button>
       <body>
@@ -16,6 +17,27 @@
             {{data.list_text}}
           </p>
            <div>
+=======
+      <div>
+        {{list.createdAt}}
+      </div>
+      <h3> Medication List </h3>
+      <button id="prevLists" class="btn btn-primary">Previous Lists</button>
+      <button class="btn btn-primary">Save List</button>
+      <body>
+
+        <div class="row justify-content-center col-6 offset-3">
+          <div>
+            <p class="fs-3 border med-list mt-3 mb-0">
+              {{data.list_title}}
+            </p>
+            <p class="fs-6 border note-textarea m-0">
+              {{data.list_text}}
+            </p>
+          </div>
+
+        </div>
+>>>>>>> 086a74ed3457dd6f9d9c048e73fe5bc46ec81e6b
       </body>
     </div>
   </div>

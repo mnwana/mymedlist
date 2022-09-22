@@ -1,33 +1,31 @@
 <body class="text-center m-auto">
   <div class="d-flex justify-content-center flex-wrap">
+<<<<<<< HEAD
     <h2 class="col-sm-12">Previous List</h2>
     <h6 class="col-sm-12">Select a row to view medication list.</h6>
     <div
       id="myGrid"
       class="ag-theme-alpine col-sm-12"
     ></div>
+=======
+    <h2 class="col-sm-12">Previous Lists</h2>
+    <div id="myGrid" class="ag-theme-alpine col-sm-12"></div>
+>>>>>>> 086a74ed3457dd6f9d9c048e73fe5bc46ec81e6b
   </div>
 </body>
 
 <script>
 
-  {{!-- const openList = function(params){
+  {{! const openList = function(params){
     console.log(params); 
     const list_id = params.value; console.log(list_id);
     document.location.replace(`/dashboard/lists/${list_id}`);
-    };  --}}
+    };  }}
 
-    const openList = function(params){
-    document.location.replace(`/dashboard/lists/${params.data.id}`);
-    }; 
-  const columnDefs= [ 
-  { field: "id"}, 
-  {field: "list_title"}, 
-  { field: "created_at"} ]; 
-  const gridOptions = {
-    columnDefs: columnDefs, 
-    rowData:{{{data}}}, 
-    onRowClicked: event => openList(event)
-  }; 
-  const gridDiv = document.querySelector("#myGrid"); new agGrid.Grid(gridDiv, gridOptions);
+  const openList = function(params){
+  document.location.replace(`/dashboard/lists/${params.data.id}`); }; const
+  columnDefs= [ { field: "id"}, {field: "list_title"}, { field: "created_at"} ];
+  const gridOptions = { columnDefs: columnDefs, rowData:{{{data}}},
+  onRowClicked: event => openList(event) }; const gridDiv =
+  document.querySelector("#myGrid"); new agGrid.Grid(gridDiv, gridOptions);
 </script>
