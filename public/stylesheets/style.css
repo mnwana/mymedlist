@@ -22,14 +22,19 @@ body {
   background-size: cover;
 }
 
+.med-list {
+  height: 50px;
+  margin-top: 13px;
+  font-size: 3rem;
+}
 .note-textarea {
   resize: none;
   height: calc(100% - 63px);
   padding-top: 15px;
 }
 
-.med-list {
-  height: 50px;
-  margin-top: 13px;
-  font-size: 3rem;
+.med-list,
+.note-textarea {
+  color: #000000;
+  width: 100%;
 }
