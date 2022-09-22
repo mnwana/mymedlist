@@ -1,34 +1,24 @@
-<body class="text-center m-auto">
+<main>
   <div>
     <h2>Patient Dashboard</h2>
     <div>
       <h4>{{data.users.username}}</h4>
     </div>
     <div>
-      <div>
-          {{list.createdAt}}
-      </div>
       <h3> Medication List </h3>
-      <button id = "prevLists" class="btn btn-primary">Previous Lists</button>
-      <button class="btn btn-primary">Save List</button>
+      <button id = "prevLists">Previous Lists</button>
       <body>
 
         <div>
-          <input
-            class="med-list"
-            placeholder="Enter Med List Name"
-            maxlength="28"
-            type="text"
-          />
-          
-          <textarea
-            class="note-textarea"
-            placeholder="Enter medications here"
-          ></textarea>
-
-        </div>
+          <h3>
+            {{data.list_title}}
+          </h3>
+          <p>
+            {{data.list_text}}
+          </p>
+           <div>
       </body>
     </div>
   </div>
-</body>
-<script src="/javascript/patient-dashboard.js"></script>
+</main>
+<script src="/javascript/previous-list.js"></script>
