@@ -6,7 +6,7 @@
     <script
       src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.js"
     ></script>
-    <title>My Med List</title>
+    <title>My Meds</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <!-- CSS only -->
     <link
@@ -27,7 +27,7 @@
       <header class="container">
         <div class="row row-cols-auto">
           <h1 class="col">
-            <a href="/">My Med List</a>
+            <a class="text-decoration-none text-warning" href="/">My Meds</a>
           </h1>
         </div>
 
@@ -50,7 +50,9 @@
       <main class="container">
         {{{body}}}
       </main>
-      <footer class="container fixed-bottom p-3">
+      <footer
+        class="container fixed-bottom p-3 background bg-light bg-opacity-50 rounded"
+      >
         Disclaimer: This site is provided for educational purposes only and is
         not intended for medical advice, diagnosis or treatment. Please consult
         your doctor or pharmacist regarding your medications.
