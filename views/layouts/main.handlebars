@@ -1,0 +1,65 @@
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.js"
+    ></script>
+    <title>My Med List</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+      crossorigin="anonymous"
+    ></script>
+    <div class="wrapper">
+      <header class="container">
+        <div class="row row-cols-auto">
+          <h1 class="col">
+            <a href="/">My Med List</a>
+          </h1>
+        </div>
+
+        <div class="col offset-11">
+          <nav class="nav">
+            {{#if loggedIn}}
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="/dashboard/patient"
+              >dashboard</a>
+              <button id="logout" class="btn-no-style">logout</button>
+            {{else}}
+              <a class="nav-link" href="/login">login</a>
+            {{/if}}
+          </nav>
+        </div>
+      </header>
+
+      <main class="container">
+        {{{body}}}
+      </main>
+      <footer class="container fixed-bottom p-3">
+        Disclaimer: This site is provided for educational purposes only and is
+        not intended for medical advice, diagnosis or treatment. Please consult
+        your doctor or pharmacist regarding your medications.
+      </footer>
+    </div>
+
+    {{#if loggedIn}}
+      <script src="/javascript/logout.js"></script>
+    {{/if}}
+  </body>
+
+</html>

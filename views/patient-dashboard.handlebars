@@ -1,0 +1,42 @@
+<main>
+  <div>
+    <h2>Patient Dashboard</h2>
+    <div>
+      <h4>{{data.username}}</h4>
+    </div>
+    <div>
+      <div>
+          {{data.lists.0.list_title}}
+      </div>
+      <h3> Medication List </h3>
+      <button id = "prevLists">Previous Lists</button>
+      <button id = "saveList" >Save List</button>
+      <body>
+
+        <div>
+          <h3>
+            {{data.lists.0.list_title}}
+          </h3>
+          <p>
+            {{data.lists.0.list_text}}
+          </p>
+           <div>
+          <input
+            class="med-list"
+            placeholder="Enter Med List Name"
+            maxlength="28"
+            type="text"
+            name="list-title"
+          />
+          <textarea
+            class="note-textarea"
+            placeholder="Enter medications here"
+            name="list-text"
+          ></textarea>
+
+        </div>
+      </body>
+    </div>
+  </div>
+</main>
+<script src="/javascript/patient-dashboard.js"></script>
