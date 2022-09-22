@@ -5,37 +5,35 @@
       <h4>{{data.username}}</h4>
     </div>
     <div>
-      <div>
-          {{data.lists.0.list_title}}
-      </div>
-      <h3> Medication List </h3>
-      <button id = "prevLists">Previous Lists</button>
-      <button id = "saveList" >Save List</button>
+      <button class="btn btn-primary" id="prevLists">Previous Lists</button>
+      <button class="btn btn-primary" id="saveList">Save List</button>
+      <h3 class="mt-5"> Recent List </h3>
       <body>
-
-        <div>
-          <h3>
+        <div class="row mt-1 justify-content-center">
+          <div class="col-6">
+            <p class="fs-3 border med-list m-0">
             {{#if hasLists}}
             {{data.lists.0.list_title}}
             {{else}}
             Create your first list!
             {{/if}}
-          </h3>
-          <p>
+            </p>
+            <p class="fs-6 border note-textarea m-0">
             {{#if hasLists}}
             {{data.lists.0.list_text}}
             {{/if}}
-          </p>
-           <div>
+            </p>
+          </div>
+          <div class="col-6 container">
           <input
-            class="med-list"
+            class="med-list border fs-3"
             placeholder="Enter Med List Name"
             maxlength="28"
             type="text"
             name="list-title"
           />
           <textarea
-            class="note-textarea"
+            class="note-textarea border fs-6"
             placeholder="Enter medications here"
             name="list-text"
           ></textarea>

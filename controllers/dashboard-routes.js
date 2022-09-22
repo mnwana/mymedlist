@@ -26,12 +26,12 @@ router.get("/patient", withAuth, (req, res) => {
     } else {
       data = [];
     }
-    console.log(data);
     var hasLists = false;
-    console.log(data.lists.len);
-    if(data.lists.len >0){
+    if(data.lists.length >0){
       hasLists = true;
     }
+    console.log(data.lists.length);
+    console.log(hasLists);
     res.render("patient-dashboard", { data, loggedIn: true, hasLists });
   });
 });
