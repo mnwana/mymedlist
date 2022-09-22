@@ -15,10 +15,16 @@
 
         <div>
           <h3>
+            {{#if hasLists}}
             {{data.lists.0.list_title}}
+            {{else}}
+            Create your first list!
+            {{/if}}
           </h3>
           <p>
+            {{#if hasLists}}
             {{data.lists.0.list_text}}
+            {{/if}}
           </p>
            <div>
           <input

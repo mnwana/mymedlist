@@ -27,8 +27,12 @@ router.get("/patient", withAuth, (req, res) => {
       data = [];
     }
     console.log(data);
-    console.log(data.lists[0].list_title);
-    res.render("patient-dashboard", { data, loggedIn: true });
+    var hasLists = false;
+    console.log(data.lists.len);
+    if(data.lists.len >0){
+      hasLists = true;
+    }
+    res.render("patient-dashboard", { data, loggedIn: true, hasLists });
   });
 });
 
